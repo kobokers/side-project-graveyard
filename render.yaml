@@ -1,0 +1,50 @@
+services:
+  - type: web
+    name: reboot-app
+    runtime: php
+    plan: free
+    buildCommand: "./render-build.sh"
+    startCommand: "php artisan serve --host=0.0.0.0 --port=$PORT"
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: false
+      - key: APP_KEY
+        generateValue: true
+      - key: LOG_CHANNEL
+        value: stderr
+      - key: SESSION_DRIVER
+        value: database
+      - key: CACHE_STORE
+        value: database
+      - key: QUEUE_CONNECTION
+        value: database
+      - key: DB_CONNECTION
+        value: pgsql
+      - key: DB_HOST
+        fromDatabase:
+          name: reboot-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: reboot-db
+          property: port
+      - key: DB_DATABASE
+        fromDatabase:
+          name: reboot-db
+          property: database
+      - key: DB_USERNAME
+        fromDatabase:
+          name: reboot-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: reboot-db
+          property: password
+
+databases:
+  - name: reboot-db
+    plan: free
+    databaseName: reboot
+    user: reboot
