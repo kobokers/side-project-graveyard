@@ -12,9 +12,9 @@ services:
       - key: APP_KEY
         sync: false
       - key: APP_URL
-        value: https://reboot-app.onrender.com
+        value: https://reboot-app-ba4y.onrender.com
       - key: ASSET_URL
-        value: https://reboot-app.onrender.com
+        value: https://reboot-app-ba4y.onrender.com
       - key: LOG_CHANNEL
         value: stderr
       - key: SESSION_DRIVER
